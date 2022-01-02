@@ -5,6 +5,18 @@
             cy.get('#signin_button').click()
         })
 
+        //negative case
+        
+        it('should try login with wrong/invalid data', () => {
+            cy.login("invalid username","invalid password")
+         });
+ 
+         it('should display error message after failed login', () => {
+             cy.get('.alert-error')
+                 .should('be.visible')
+                 .and('contain','Login and/or password are wrong')
+         });
+
         //positive case
 
         it('should passed login into application', () => {
@@ -26,16 +38,6 @@
         });
 
         
-        //negative case
         
-        it('should try login with wrong/invalid data', () => {
-           cy.login('invalid username','invalid password')
-        });
-
-        it('should display error message after failed login', () => {
-            cy.get('.alert-error')
-                .should('be.visible')
-                .and('contain','Login and/or password are wrong')
-        });
 
     });
